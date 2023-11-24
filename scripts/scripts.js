@@ -4,18 +4,19 @@ let images = document.querySelectorAll('.item');
 
 for (let image of images) {
     image.addEventListener('click', () => {
-        resetClassesFromTarget(images, image.id);
-        addInactiveClass(images, image.id);
+        resetClassesApartFromTarget(images, image.id);
 
         if (image.classList.contains('active')) {
             resetClasses(images)
         } else {
+            image.classList.remove('filtered');
             image.classList.add('active');
+            inctivateItems(images, image.id);
         };
     });
 };
 
-function resetClassesFromTarget(array, id) {
+function resetClassesApartFromTarget(array, id) {
     for (let item of array) {
         if (item.id !== id) {
             item.classList.remove('active');
@@ -31,18 +32,10 @@ function resetClasses(array) {
     };
 }
 
-function addInactiveClass(array, id) {
+function inctivateItems(array, id) {
     for (let item of array) {
         if (item.id !== id) {
             item.classList.add('filtered');
-        }
-    }
-}
-
-function resetInactiveClass(array, id) {
-    for (let item of array) {
-        if (item.id !== id) {
-            item.classList.remove('filtered');
         }
     }
 }
